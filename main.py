@@ -40,7 +40,7 @@ def reset_password_page():
                 reset_password(username, new_password)
 
 def main():
-    st.title("Example page")
+    st.title("Streamlit - Supabase Login")
 
     tabs = st.tabs(["Login", "Register", "Forgot password"])
 
