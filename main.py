@@ -1,16 +1,12 @@
-# main.py
-
 import streamlit as st
 from auth import create_account, login, reset_password
 
 def create_account_page():
-    st.header("Create New Account")
-
     with st.form(key='signup_form'):
-        username = st.text_input("Username")
+        username = st.text_input("Email")
         password = st.text_input("Password", type="password")
         password_confirm = st.text_input("Confirm Password", type="password")
-        submit_button = st.form_submit_button(label='Sign Up')
+        submit_button = st.form_submit_button(label='Register')
 
         if submit_button:
             if password != password_confirm:
@@ -19,10 +15,8 @@ def create_account_page():
                 create_account(username, password)
 
 def login_page():
-    st.header("Login")
-
     with st.form(key='login_form'):
-        username = st.text_input("Username")
+        username = st.text_input("Email")
         password = st.text_input("Password", type="password")
         submit_button = st.form_submit_button(label='Login')
 
@@ -33,10 +27,8 @@ def login_page():
                 # Add additional logic here for after successful login
 
 def reset_password_page():
-    st.header("Reset Password")
-
     with st.form(key='reset_password_form'):
-        username = st.text_input("Username")
+        username = st.text_input("Email")
         new_password = st.text_input("New Password", type="password")
         new_password_confirm = st.text_input("Confirm New Password", type="password")
         submit_button = st.form_submit_button(label='Reset Password')
@@ -48,14 +40,17 @@ def reset_password_page():
                 reset_password(username, new_password)
 
 def main():
-    st.sidebar.title("Navigation")
-    page = st.sidebar.selectbox("Choose an option", ["Login", "Create Account", "Reset Password"])
+    st.title("Example page")
 
-    if page == "Login":
+    tabs = st.tabs(["Login", "Register", "Forgot password"])
+
+    with tabs[0]:
         login_page()
-    elif page == "Create Account":
+
+    with tabs[1]:
         create_account_page()
-    elif page == "Reset Password":
+
+    with tabs[2]:
         reset_password_page()
 
 if __name__ == "__main__":
