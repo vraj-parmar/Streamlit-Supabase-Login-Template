@@ -13,3 +13,5 @@ conn = init_supabase()
 
 # Use the connection
 data = conn.table("users").select("*").execute()
+
+st.header("Streamlit - Supabase Login Template")
