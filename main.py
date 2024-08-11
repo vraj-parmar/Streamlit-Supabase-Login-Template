@@ -14,4 +14,4 @@ conn = init_supabase()
 # Use the connection
 data = conn.table("users").select("*").execute()
 
-st.write(data)
+st.write(type(data))
